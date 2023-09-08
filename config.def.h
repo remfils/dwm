@@ -15,10 +15,19 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+
+static const char col_marine_blue[] = "#00afda";
+static const char col_dark_green[] = "#617321";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeStatus]  = { col_gray1, col_marine_blue,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_dark_green, col_gray4,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+        [SchemeTagsNorm]  = { col_gray4, col_dark_green,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+        [SchemeInfoSel]  = { col_gray4, "#0000ff",  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+        [SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -30,8 +39,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "ColorPicker",     NULL,       NULL,       0,            1,           -1 },
 // { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+        { "Gimp",     NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -62,6 +72,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", "10", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
 static const char *termcmd[]  = { "st", NULL };
+static const char *flameshot_partial[] = { "flameshot", "gui", NULL};
+
+static const char *thunar_cmd[] = { "thunar", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -70,8 +83,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_e,      spawn,     {.v = thunar_cmd } },
 	/* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
 	/* { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } }, */
+
+        { NULL, XK_Print, spawn, { .v = flameshot_partial }},
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
