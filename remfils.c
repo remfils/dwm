@@ -7,6 +7,8 @@ int remfils_h = 20 + 23 * 2;
 
 int remfils_dialog_selected_state;
 
+static const char *shutdown_cmd[] = { "sudo", "shutdown", "-h", "now", NULL};
+
 void remfils_draw_dialog()
 {
   int i = 0;
@@ -37,7 +39,7 @@ void remfils_draw_dialog()
   i++;
 
   str_len = 25;
-  XDrawString(dpy, remfils_dialog_win, remfils_dialog_gc, x_offset, y_offset  + top_pad * i, "Press Win+Enter to reboot", str_len);
+  XDrawString(dpy, remfils_dialog_win, remfils_dialog_gc, x_offset, y_offset  + top_pad * i, "Press Win+Enter to shutdown", str_len);
   i++;
 }
 
@@ -86,7 +88,9 @@ void remfils_run()
   if (remfils_dialog_selected_state == -1) {
     quit(0);
   } else if (remfils_dialog_selected_state == 1) {
-    quit(0);
+    Arg a[1];
+    a[0].v = shutdown_cmd;
+    spawn(a);
   }
 }
 
