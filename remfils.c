@@ -38,7 +38,7 @@ void remfils_draw_dialog()
   XDrawString(dpy, remfils_dialog_win, remfils_dialog_gc, x_offset, y_offset + top_pad * i, "Cancel", str_len);
   i++;
 
-  str_len = 25;
+  str_len = 27;
   XDrawString(dpy, remfils_dialog_win, remfils_dialog_gc, x_offset, y_offset  + top_pad * i, "Press Win+Enter to shutdown", str_len);
   i++;
 }
