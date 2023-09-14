@@ -103,8 +103,13 @@ void remfils_open_window()
 
   remfils_dialog_win = XCreateSimpleWindow(dpy, root, (sw - remfils_w) / 2 , (sh - remfils_h) / 2, remfils_w, remfils_h, 5, white, black);
 
-  //remfils_dialog_drawable = XCreatePixmap(dpy, remfils_dialog_win, remfils_w, remfils_h, DefaultDepth(dpy, screen));
+
+  Atom wmModalState = XInternAtom(dpy, "_NET_WM_STATE_MODAL", 0);
+
   XSetStandardProperties(dpy, remfils_dialog_win, "Closing dwm","Testing", None, NULL, 0, NULL);
+  XChangeProperty(dpy, remfils_dialog_win, netatom[NetWMState], XA_ATOM, 32, PropModeReplace, (unsigned char*)&wmModalState, 1);
+  XChangeProperty(dpy, remfils_dialog_win, netatom[NetWMWindowType], XA_ATOM, 32, PropModeReplace, (unsigned char*)&netatom[NetWMWindowTypeDialog], 1);
+  XSetTransientForHint(dpy, remfils_dialog_win, root);
     
   remfils_dialog_gc = XCreateGC(dpy, remfils_dialog_win, 0,0);
   XClearWindow(dpy, remfils_dialog_win);
