@@ -74,7 +74,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", "10", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
 static const char *termcmd[]  = { "st", NULL };
-static const char *flameshot_partial[] = { "flameshot", "gui", NULL};
+static const char *screenshot_cmd[] = {
+  "/bin/bash", "/home/remfils/.config/scripts/screenshot.sh",
+  //"", "",
+  NULL
+};
 static const char *thunar_cmd[] = { "thunar", NULL};
 
 static const Key keys[] = {
@@ -88,7 +92,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_j,      incnmaster,     {.i = -1 } },
 
-        { NULL, XK_Print, spawn, { .v = flameshot_partial }},
+        { NULL, XK_Print, spawn, { .v = screenshot_cmd }},
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
