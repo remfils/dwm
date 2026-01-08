@@ -1,15 +1,24 @@
 /* See LICENSE file for copyright and license details. */
 
+static const unsigned int remfils_bar_padding = 10;
+
 /* appearance */
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int gappx     = 5;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 5;       /* vertical padding of bar */
-static const int sidepad            = 5;       /* horizontal padding of bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const int vertpad            = 0;       /* vertical padding of bar */
+static const int sidepad            = 0;       /* horizontal padding of bar */
+static const char *fonts[]          = {
+  "Hack:size=10:antialias=true:autohint=true"
+  , "Symbols Nerd Font:size=12:antialias=true:autohint=true"
+  , "NotoColorEmoji:size=14:antialias=true:autohint=true"
+  //, "Material Icons:size=10:antialias=true:autohint=true"
+  , "monospace:size=10:antialias=true"
+};
+static const char dmenufont[]       = "Hack:size=12:antialias=true:autohint=true";
+
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -33,7 +42,8 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] =         { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tagsWithApps[] = {"󰎦", "󰎩", "󰎬", "󰎮", "󰎰", "󰎵", "󰎸", "󰎻", "󰎾" };
 
 static const Rule rules[] = {
 	/* xprop(1):
