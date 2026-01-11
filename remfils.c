@@ -3,7 +3,7 @@ Window remfils_dialog_win;
 GC remfils_dialog_gc;
 Drawable remfils_dialog_drawable;
 int remfils_w = 400;
-int remfils_h = 20 + 23 * 2;
+int remfils_h = 20 + 23 * 1;
 
 int remfils_dialog_selected_state;
 
