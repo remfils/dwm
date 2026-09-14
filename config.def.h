@@ -19,6 +19,12 @@ static const char *fonts[]          = {
 };
 static const char dmenufont[]       = "Hack:size=12:antialias=true:autohint=true";
 
+
+/* altbar */
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
+static const char *altbarclass      = "quickshell"; /* Alternate bar class name */
+static const char *altbarcmd        = NULL; /* Alternate bar launch command */
+
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
